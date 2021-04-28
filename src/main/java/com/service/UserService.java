@@ -31,5 +31,11 @@ public class UserService {
 	public Optional<List<User>> returnUserByName(String firstName){
 		return userRepository.findByfirstName(firstName);
 	}
+
+	public String deleteAllUsers() {
+		// TODO Auto-generated method stub
+		userRepository.deleteAll();
+		return "All users deleted";
+	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,6 +53,11 @@ public class UserController {
 	@GetMapping("/getUser/{name}")
 	public ResponseEntity<Optional<List<User>>> returnUserByName(@PathVariable(name = "name") String firstName){
 		return ResponseEntity.ok(userService.returnUserByName(firstName));
+	}
+	
+	@DeleteMapping("/deleteAllUsers")
+	public ResponseEntity<String> deleteAllUsers(){
+		return ResponseEntity.ok(userService.deleteAllUsers());
 	}
 	
 }
