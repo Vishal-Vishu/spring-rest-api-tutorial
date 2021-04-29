@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.exception.UserNotFoundException;
 import com.model.User;
 import com.repository.UserRepository;
 
@@ -36,6 +37,21 @@ public class UserService {
 		// TODO Auto-generated method stub
 		userRepository.deleteAll();
 		return "All users deleted";
+	}
+	
+	public String deleteById(Long id) {
+		userRepository.deleteById(id);
+		return "User Deleted";
+	}
+
+	public Optional<User> getById(Long id) throws UserNotFoundException{
+		Optional<User> userObject = userRepository.findById(id);
+		
+		if(!userObject.isPresent()) {
+			throw new UserNotFoundException("User Not Found");
+		}
+		
+		return userObject;
 	}
 	
 }

@@ -1,11 +1,15 @@
 package com.model;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,14 +27,17 @@ public class User {
 	private Long id;
 	
 	
-	@Column(name="first_name",length = 50,nullable = false)
+	@NotBlank(message = "First Name cannot be empty")
+	@Size(min = 2)
 	private String firstName;
 	
-	@Column(name="last_name",length = 50,nullable=false)
+	@NotBlank
 	private String lastName;
 	
 	private String role;
 	
-	@Column(name = "ssn",length = 25,nullable = false,unique = true)
 	private String ssn;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Order> order;
 }
