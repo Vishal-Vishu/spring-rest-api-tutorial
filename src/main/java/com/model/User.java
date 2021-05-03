@@ -2,6 +2,7 @@ package com.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,13 +12,17 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class User{
 
 	@Id
@@ -34,6 +39,8 @@ public class User{
 	
 	private String role;
 	
+	@JsonIgnore
+	@Column(name="ssn",nullable=true)
 	private String ssn;
 	
 	@OneToMany(mappedBy = "user")
