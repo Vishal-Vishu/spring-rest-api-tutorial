@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonFilter(value = "userFilter")
 public class User{
 
 	@Id
@@ -39,7 +41,6 @@ public class User{
 	
 	private String role;
 	
-	@JsonIgnore
 	@Column(name="ssn",nullable=true)
 	private String ssn;
 	

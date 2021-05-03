@@ -46,6 +46,7 @@ public class UserController {
 	
 	@PostMapping("/addBulkUser")
 	public ResponseEntity<String> addBulkUsers(@RequestBody List<User> userList){
+		System.out.println("All users"+userList);
 		return ResponseEntity.ok(userService.saveBulkUser(userList));
 	}
 	
