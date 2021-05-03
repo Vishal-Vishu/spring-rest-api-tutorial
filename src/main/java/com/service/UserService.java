@@ -25,6 +25,7 @@ public class UserService {
 	}
 	
 	public String saveBulkUser(List<User> userList) {
+		System.out.println("User List -- "+userList);
 		userRepository.saveAll(userList);
 		return "Users Added";
 	}

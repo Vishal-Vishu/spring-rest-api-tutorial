@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@JsonFilter(value = "userFilter")
+//@JsonFilter(value = "userFilter")
 public class User{
 
 	@Id
