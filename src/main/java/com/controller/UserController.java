@@ -25,6 +25,8 @@ import com.model.Order;
 import com.model.User;
 import com.service.UserService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/user/")
 @Validated
@@ -103,10 +105,13 @@ public class UserController {
 		return ResponseEntity.ok(userService.deleteById(id));
 	}
 	
+	@ApiOperation(value = "Retrieve list of users")
 	@GetMapping("/getUserById/{id}")
-	public ResponseEntity<Optional<User>> getByUserId(@PathVariable Long id){
+	public ResponseEntity<User> getByUserId(@PathVariable Long id){
 		try {
-			return ResponseEntity.ok(userService.getById(id));
+			Optional<User> userOptional = userService.getById(id);
+			User user = userOptional.get();
+			return ResponseEntity.ok(user);
 		}catch(UserNotFoundException e) {
 			System.out.println(e.getMessage());
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
